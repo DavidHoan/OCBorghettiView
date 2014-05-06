@@ -29,8 +29,20 @@
 {
     self = [super initWithFrame:frame];
     
-    if (self)
+    if (self){
         [self initBorghetti];
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self){
+        [self initBorghetti];
+    }
     
     return self;
 }
