@@ -195,6 +195,34 @@ describe(@"OCBorghettiView", ^{
         });
     });
     
+    describe(@"#initWithCoder", ^{
+        __block OCBorghettiView *view;
+        __block NSCoder *fakeCoder;
+        __block Swizzlean *borghettiSwizz;
+        __block BOOL methodHasBeenCalled;
+        
+        beforeEach(^{
+            methodHasBeenCalled = NO;
+            borghettiSwizz = [[Swizzlean alloc] initWithClassToSwizzle:[OCBorghettiView class]];
+            
+            [borghettiSwizz swizzleInstanceMethod:@selector(initBorghetti)
+                    withReplacementImplementation:^(id _self){
+                        methodHasBeenCalled = YES;
+                    }];
+            
+            fakeCoder = nice_fake_for([NSCoder class]);
+            view = [[OCBorghettiView alloc] initWithCoder:fakeCoder];
+        });
+        
+        afterEach(^{
+            [borghettiSwizz resetSwizzledInstanceMethod];
+        });
+        
+        it(@"has called the initBorghetti", ^{
+            methodHasBeenCalled should be_truthy;
+        });
+    });
+    
     describe(@"#initBorghetti", ^{
         beforeEach(^{
             [view initBorghetti];
