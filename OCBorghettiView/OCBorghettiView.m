@@ -10,8 +10,6 @@
 
 @implementation OCBorghettiView
 
-@synthesize headerBorderColor = _headerBorderColor;
-
 #pragma mark - Public
 
 #pragma mark View lifecycle
@@ -147,9 +145,9 @@
 
 - (void)layoutSubviews
 {
-    int height = 0;
+    NSInteger height = 0;
     
-    for (int i = 0; i < self.views.count; i++) {
+    for (NSInteger i = 0; i < self.views.count; i++) {
         UIButton *sectionTitle = self.sections[i];
         id sectionView = self.views[i];
         
@@ -160,7 +158,7 @@
         [sectionTitle setFrame:sectionTitleFrame];
         
         [sectionTitle setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, -5.0f, 0.0f, 0.0f)];
-        [sectionTitle setImageEdgeInsets:UIEdgeInsetsMake(0.0f, self.frame.size.width - 25.0f , 0.0f, 0.0f)];
+        [sectionTitle setImageEdgeInsets:UIEdgeInsetsMake(0.0f, self.frame.size.width - 25.0f, 0.0f, 0.0f)];
         
         CGRect sectionViewFrame = [sectionView frame];
         sectionViewFrame.origin.x = 0;
